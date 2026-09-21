@@ -1,0 +1,7 @@
+node_modules/
+.env
+dist/
+*.aux
+*.log
+*.out
+*.toc
