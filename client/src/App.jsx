@@ -4,7 +4,6 @@ import Products from "./pages/Products.jsx";
 import POS from "./pages/POS.jsx";
 import Sales from "./pages/Sales.jsx";
 
-// No router - buttons switch page. Easiest for beginners.
 export default function App() {
   const [user, setUser] = useState(localStorage.getItem("user"));
   const [page, setPage] = useState("pos");

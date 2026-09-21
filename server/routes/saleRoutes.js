@@ -4,14 +4,12 @@ import Sale from "../models/Sale.js";
 
 const router = express.Router();
 
-// GET /api/sales -> all bills (new first)
 router.get("/", async (req, res) => {
   const sales = await Sale.find().sort({ date: -1 }).limit(50);
   res.json(sales);
 });
 
-// POST /api/sales -> checkout {items:[{productId,qty}], paidAmount}
-// Reduces stock, calculates change, and saves the bill.
+
 router.post("/", async (req, res) => {
   const { items, paidAmount } = req.body; // items from cart + cash given
   let total = 0;
@@ -28,7 +26,6 @@ router.post("/", async (req, res) => {
     billItems.push({ productId: p._id, name: p.name, price: p.price, qty: it.qty });
   }
 
-  // Cash handling: if paidAmount provided, validate and calc change
   const paid = Number(paidAmount) || total; // default: exact payment if not provided (backward compatible)
   if (paid < total) {
     return res.status(400).json({ error: `Insufficient payment. Total ${total} Tk, paid ${paid} Tk` });
