@@ -5,3 +5,7 @@ dist/
 *.log
 *.out
 *.toc
+*.synctex.gz
+
+# Reference material only - never part of the Lab 2 submission
+/sample lab report.pdf
